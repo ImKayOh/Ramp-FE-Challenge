@@ -26,9 +26,8 @@ export function App() {
     transactionsByEmployeeUtils.invalidateData();
 
     await employeeUtils.fetchAll();
+    setIsLoading(false); /*BUG FIX FIVE*/
     await paginatedTransactionsUtils.fetchAll();
-
-    setIsLoading(false);
   }, [employeeUtils, paginatedTransactionsUtils, transactionsByEmployeeUtils]);
 
   const loadTransactionsByEmployee = useCallback(
@@ -66,7 +65,7 @@ export function App() {
             if (newValue === null) {
               return;
               /* BUG FIX THREE */
-            } else if (newValue.id == "") {
+            } else if (newValue.id === "") {
               await loadAllTransactions();
             } else await loadTransactionsByEmployee(newValue.id);
           }}

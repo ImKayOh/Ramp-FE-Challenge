@@ -24,7 +24,7 @@ export function usePaginatedTransactions(): PaginatedTransactionsResult {
       if (response === null || previousResponse === null) {
         return response;
       }
-
+      /*BUG FIX FOUR*/
       return {
         data: [...previousResponse.data, ...response.data],
         nextPage: response.nextPage,
